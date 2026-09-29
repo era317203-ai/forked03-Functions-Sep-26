@@ -1,6 +1,28 @@
-def most_common_word(text):
-    pass # тут ваш код
 
+# text = "Кот, кот. Собака, собака! Кот."
+
+def most_common_word(text):
+    text = text.lower()
+    for symbol in ",.!?;:-":
+        text = text.replace(symbol, "")
+    words = text.split()
+    counts ={}
+    for el in range (len(words)):
+       word = words [el]
+       if word not in counts:
+        counts [word] =1
+       else:
+        counts [word] +=1
+    most_common = None 
+    max_count = 0
+    for word in counts:
+        if counts[word] > max_count:
+            max_count = counts[word]
+            most_common = word
+
+    return most_common                                  
+# print (most_common_word(text))                                                                                                     # most_common = max(counts, key=counts.get)
+    
 
 assert most_common_word("кот кот собака") == "кот", "Самое частое слово — кот"
 assert most_common_word("Кот кот КОТ собака") == "кот", "Регистр должен игнорироваться"
